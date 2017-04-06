@@ -1,0 +1,28 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xs-6">
+            <h2>ProPublica API</h2>
+            <form class="form-inline">
+                <div class="form-group">
+                    <label for="requestEIN">EIN Number: </label>
+                    <input type="text" class="form-control" id="requestEIN" name="requestEIN" placeholder="954806856" [(ngModel)]="requestEIN">
+                </div>
+                <button type="button" class="btn btn-primary" (click)="getProPublicaOrg()">Get Organization</button>
+            </form><br>
+            <dl class="dl-horizontal">
+                <dt>Name:</dt>
+                <dd>{{propublicOrg.name}}</dd>
+                <dt>EIN:</dt>
+                <dd>{{propublicOrg.ein}}</dd>
+                <dt>Address:</dt>
+                <dd>{{propublicOrg.address}}</dd>
+                <dt>City:</dt>
+                <dd>{{propublicOrg.city}}</dd>
+                <dt>State:</dt>
+                <dd>{{propublicOrg.state}}</dd>
+                <dt>Zip:</dt>
+                <dd>{{propublicOrg.zipcode}}</dd>   
+            </dl>
+        </div>
+    </div>
+</div>

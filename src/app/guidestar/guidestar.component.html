@@ -1,0 +1,100 @@
+<div class="container">
+  <h2>GuideStar Detail API</h2>
+  <form class="form-inline">
+      <div class="form-group">
+          <label for="requestID">ID Number: </label>
+          <input type="text" class="form-control" id="requestID" name="requestID" placeholder="7831216" [(ngModel)]="requestID">
+      </div>
+      <button type="button" class="btn btn-primary" (click)="getGuideStarOrg()">Get Organization</button>
+  </form><br>
+  <dl class="dl-horizontal">
+      <dt>Name:</dt>
+      <dd>{{guidestarOrg.organization_name}}</dd>
+      <dt>EIN:</dt>
+      <dd>{{guidestarOrg.ein}}</dd>
+      <dt>Address:</dt>
+      <dd>{{guidestarOrg.address_line1}} {{guidestarOrg.address_line2}}</dd>
+      <dt>City:</dt>
+      <dd>{{guidestarOrg.city}}</dd>
+      <dt>State:</dt>
+      <dd>{{guidestarOrg.state}}</dd>
+      <dt>Zip:</dt>
+      <dd>{{guidestarOrg.zip}}</dd>  
+      <dt>Mission:</dt>
+      <dd>{{guidestarOrg.mission}}</dd> 
+  </dl>
+</div>
+<div class="container"><hr>
+  <h2>GuideStar Search API</h2>
+  <form>
+      <div class="row">
+          <div class="form-group col-xs-4">
+              <label for="paramName">Organization Name: </label>
+              <input type="text" class="form-control" id="paramName" name="searchParams.organization_name" placeholder="" [(ngModel)]="searchParams.organization_name">
+          </div>
+      </div>
+      <div class="row">
+          <div class="form-group col-xs-4">
+              <label for="paramID">Organization ID: </label>
+              <input type="text" class="form-control" id="paramID" name="searchParams.organization_id" placeholder="" [(ngModel)]="searchParams.organization_id">
+          </div>
+      </div>
+      <div class="row">
+          <div class="form-group col-xs-4">
+              <label for="paramEIN">EIN Number: </label>
+              <input type="text" class="form-control" id="paramEIN" name="searchParams.ein" placeholder="" [(ngModel)]="searchParams.ein">
+          </div>
+      </div>
+      <div class="row">
+          <div class="form-group col-xs-4">
+              <label for="paramCity">City: </label>
+              <input type="text" class="form-control" id="paramCity" name="searchParams.city" placeholder="" [(ngModel)]="searchParams.city">
+          </div>
+      </div>
+      <div class="row">
+          <div class="form-group col-xs-4">
+              <label for="paramState">State: </label>
+              <input type="text" class="form-control" id="paramState" name="searchParams.state" placeholder="" [(ngModel)]="searchParams.state">
+          </div>
+      </div>
+      <div class="row">
+          <div class="form-group col-xs-4">
+              <label for="paramZip">Zip: </label>
+              <input type="text" class="form-control" id="paramZip" name="searchParams.zip" placeholder="" [(ngModel)]="searchParams.zip">
+          </div>
+      </div>
+      <div class="row">
+          <div class="form-group col-xs-4">
+              <label for="paramPartcip">Participation: </label>
+              <input type="text" class="form-control" id="paramPartcip" name="searchParams.participation" placeholder="" [(ngModel)]="searchParams.participation">
+          </div>
+      </div><br>
+      <button type="button" class="btn btn-primary" (click)="submitParams()">Submit</button>
+  </form><hr>
+</div>
+
+<div class="container"><h2>GuideStar Search Results</h2></div>
+<div class="container" *ngIf="gsSearched">   
+    <h5>Showing {{guideStarSearchResults.showing}}</h5>
+    <table class="table table-hover">
+        <thead>
+            <th>Organization Name</th>
+            <th>GuideStar ID</th>
+            <th>EIN</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Zip</th>
+        </thead>
+        <tr *ngFor="let result of guideStarSearchResults.hits">
+            <td>{{result.organization_name}}</td>
+            <td>{{result.organization_id}}</td>
+            <td>{{result.ein}}</td>
+            <td>{{result.city}}</td>
+            <td>{{result.state}}</td>
+            <td>{{result.zip}}</td>
+        </tr>
+    </table>
+    <button type="button" class="btn btn-primary" (click)="prevPage()">Prev</button>
+    <button type="button" class="btn btn-primary" (click)="nextPage()">Next</button>
+    <br>
+</div>
